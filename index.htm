@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <style>
+     /* http://meyerweb.com/eric/tools/css/reset/  v2.0 | 20110126 License: none (public domain) */
+     html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}/*HTML5display-roleresetforolderbrowsers*/article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}body{line-height:1;}ol,ul{list-style:none;}blockquote,q{quotes:none;}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}table{border-collapse:collapse;border-spacing:0;}
+
+     html, body { height: 100%; overflow: hidden; }
+     body > div {
+       width: -moz-calc(100% - 80px);
+       width: -webkit-calc(100% - 80px);
+       width: calc(100% - 80px);
+       height: -moz-calc(100% - 80px);
+       height: -webkit-calc(100% - 80px);
+       height: calc(100% - 80px);
+       margin: 20px;
+       border-radius: 30px;
+       padding: 20px;
+       box-shadow: 0px 0px 20px #000;
+     }
+     div > div {
+       position: relative;
+       top: 50%;
+       margin-top: -50%;
+       width: 100%;
+       height: 50%;
+       font-size: 50pt;
+       text-align: center;
+     }
+    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+    $(function ()
+      {
+          var problems = [
+              '山・川',
+              '海・湖',
+              '国・首都',
+              '都道府県・市区町村',
+              '歴史上の人物',
+              '職業・役職',
+              '会社・商品',
+              '歌・歌手',
+              '漫画・漫画家',
+              '書籍・作家',
+              '野菜・果物',
+              '料理・飲物',
+              'お菓子・スイーツ',
+              'おもちゃ・ゲーム',
+              '映画・テレビ番組',
+              'ことわざ・慣用句',
+              '名物・観光名所',
+              'スポーツ・選手',
+              '植物',
+              '動物',
+              '寿司ネタ',
+              '英単語',
+              'カタカナことば',
+              '丸いもの',
+              '四角いもの',
+              '赤いもの',
+              '白いもの',
+              '黒いもの',
+              '青いもの',
+              '7文字以上のことば',
+              '漢字4文字のことば',
+              '2文字のことば',
+              '「ん」で終わることば',
+              '長音「ー」の入ることば',
+              'なんでもあり',
+          ], shuffle = function (a)
+          {
+              var i = a.map(function (x) { return [Math.random(), x]; });
+              i.sort(function (p, q) { return p[0] - q[0]; });
+              return i.map(function (x) { return x[1]; });
+          }, format = function (s)
+          {
+              return s.replace(/(?=ことば$)/, '<br>').replace(/・/, '<br>・<br>');
+          }, count = 0;
+          $('div div').on('click', function ()
+                          {
+                              if (count == 0) problems = shuffle(problems);
+                              $(this).html(format(problems[count++]));
+                              count %= problems.length;
+                          }).html('TOUCH THIS<br><br>[' + problems.length + ']');
+      });
+      </script>
+  </head>
+  <body><div><div></div></div></body>
+</html>
